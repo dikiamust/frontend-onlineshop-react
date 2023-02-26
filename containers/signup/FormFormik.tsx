@@ -16,7 +16,6 @@ import {
 } from '@mui/material';
 import { InputAdornment } from '@mui/material';
 import { NextPage } from 'next';
-import Cookies from 'js-cookie';
 import BASE_URL from 'utils/baseUrl';
 import Image from 'next/image';
 import ErrorIcon from '@/svg/error-icon.svg';
@@ -73,6 +72,7 @@ const SignupFormFormik: NextPage = () => {
       password: '',
       phone: '',
       shippingAddress: '',
+      role: 'customer',
     },
     validationSchema,
     onSubmit: async () => {
@@ -86,15 +86,13 @@ const SignupFormFormik: NextPage = () => {
       });
 
       const validate = await response.json();
+      console.log('check', validate);
 
-      const signInSucces = response.status === 200;
+      const signUpSucces = response.status === 200;
 
-      if (signInSucces) {
-        console.log('o', signInSucces);
-
+      if (signUpSucces) {
         setLoading(false);
-        Cookies.set('token', validate.token);
-        await router.push('/dashboard');
+        await router.push('/signin');
       } else {
         setLoading(false);
         formik.setFieldError('email', 'Invalid credentials');

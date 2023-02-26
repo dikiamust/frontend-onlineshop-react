@@ -82,20 +82,18 @@ const SigninFormFormik: NextPage = () => {
         body: JSON.stringify(formik.values),
       });
 
-      console.log('p', response.status);
-
       const validate = await response.json();
-
-      console.log('kk', validate);
 
       const signInSucces = response.status === 200;
 
       if (signInSucces) {
-        console.log('o', signInSucces);
-
         setLoading(false);
-        Cookies.set('token', validate.token);
-        await router.push('/dashboard');
+        Cookies.set('access_token', validate.access_token);
+        if (validate.role === 'admin') {
+          await router.push('/dashboard');
+        } else {
+          await router.push('/');
+        }
       } else {
         setLoading(false);
         formik.setFieldError('email', 'Invalid credentials');
