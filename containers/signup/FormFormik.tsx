@@ -136,7 +136,7 @@ const SignupFormFormik: NextPage = () => {
           <Typography
             component="h1"
             variant="h5"
-            sx={{ mt: 7, color: 'white', marginTop: '130px' }}
+            sx={{ mt: 13, color: 'white' }}
           >
             Sign up
           </Typography>
@@ -146,6 +146,7 @@ const SignupFormFormik: NextPage = () => {
             noValidate
             sx={{
               mt: 3,
+              zIndex: 2,
               maxWidth: '350px',
               backgroundColor: 'white',
               padding: '35px',
