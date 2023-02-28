@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
-import { ErrorText } from './styled';
 import {
   Box,
   Button,
@@ -26,6 +25,7 @@ import { validationSchema } from './ validationSchema';
 import Footer3 from 'components/Footer3';
 import Header3 from 'components/Header3';
 import ContentLoading from 'components/ContentLoading';
+import { ErrorTextAuth } from 'components/ErrorTextAuth';
 
 const DummyBox = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -58,7 +58,7 @@ const ImageErrorWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const ContainerForm = styled(Box)(({ theme }) => ({
+const Wrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -132,7 +132,7 @@ const SignupFormFormik: NextPage = () => {
     <>
       <ContainerSignup>
         <Header3 logo="original" />
-        <ContainerForm>
+        <Wrapper>
           <Typography
             component="h1"
             variant="h5"
@@ -173,7 +173,7 @@ const SignupFormFormik: NextPage = () => {
                     quality={100}
                   />
                 </ImageErrorWrapper>
-                <ErrorText>{formik.errors.username}</ErrorText>
+                <ErrorTextAuth>{formik.errors.username}</ErrorTextAuth>
               </ContainerError>
             ) : null}
 
@@ -196,7 +196,7 @@ const SignupFormFormik: NextPage = () => {
                     quality={100}
                   />
                 </ImageErrorWrapper>
-                <ErrorText>{formik.errors.email}</ErrorText>
+                <ErrorTextAuth>{formik.errors.email}</ErrorTextAuth>
               </ContainerError>
             ) : null}
 
@@ -236,7 +236,7 @@ const SignupFormFormik: NextPage = () => {
                     quality={100}
                   />
                 </ImageErrorWrapper>
-                <ErrorText>{formik.errors.password}</ErrorText>
+                <ErrorTextAuth>{formik.errors.password}</ErrorTextAuth>
               </ContainerError>
             ) : null}
 
@@ -260,7 +260,7 @@ const SignupFormFormik: NextPage = () => {
                     quality={100}
                   />
                 </ImageErrorWrapper>
-                <ErrorText>{formik.errors.phone}</ErrorText>
+                <ErrorTextAuth>{formik.errors.phone}</ErrorTextAuth>
               </ContainerError>
             ) : null}
 
@@ -284,7 +284,7 @@ const SignupFormFormik: NextPage = () => {
                     quality={100}
                   />
                 </ImageErrorWrapper>
-                <ErrorText>{formik.errors.shippingAddress}</ErrorText>
+                <ErrorTextAuth>{formik.errors.shippingAddress}</ErrorTextAuth>
               </ContainerError>
             ) : null}
 
@@ -308,7 +308,7 @@ const SignupFormFormik: NextPage = () => {
               </Grid>
             </Grid>
           </Box>
-        </ContainerForm>
+        </Wrapper>
       </ContainerSignup>
       {loading ? <ContentLoading /> : <DummyBox />}
       <Footer3 />

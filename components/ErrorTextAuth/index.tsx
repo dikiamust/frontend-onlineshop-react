@@ -1,6 +1,6 @@
 import { styled } from '@mui/system';
 
-export const ErrorText = styled('span')(({ theme }) => ({
+export const ErrorTextAuth = styled('span')(({ theme }) => ({
   fontFamily: 'Bahnschrift',
   fontStyle: 'normal',
   fontWeight: 300,
