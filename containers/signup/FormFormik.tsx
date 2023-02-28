@@ -43,6 +43,27 @@ const ContainerSignup = styled(Box)(({ theme }) => ({
   },
 }));
 
+const ContainerError = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  mt: '10px',
+  alignItems: 'start',
+}));
+
+const ImageErrorWrapper = styled(Box)(({ theme }) => ({
+  width: '16px',
+  height: '16px',
+  [theme.breakpoints.down('sm')]: {
+    width: '13px',
+    height: '13px',
+  },
+}));
+
+const ContainerForm = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+}));
+
 interface State {
   password: string;
   showPassword: boolean;
@@ -111,13 +132,7 @@ const SignupFormFormik: NextPage = () => {
     <>
       <ContainerSignup>
         <Header3 logo="original" />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
+        <ContainerForm>
           <Typography
             component="h1"
             variant="h5"
@@ -148,32 +163,17 @@ const SignupFormFormik: NextPage = () => {
               onChange={formik.handleChange}
             />
             {formik.touched.username && formik.errors.username ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  mt: '10px',
-                  alignItems: 'start',
-                }}
-              >
-                <Box
-                  sx={{
-                    width: '16px',
-                    height: '16px',
-                    [theme.breakpoints.down('sm')]: {
-                      width: '13px',
-                      height: '13px',
-                    },
-                  }}
-                >
+              <ContainerError>
+                <ImageErrorWrapper>
                   <Image
                     src={ErrorIcon}
                     alt="Error Icon"
                     objectFit="fill"
                     quality={100}
                   />
-                </Box>
+                </ImageErrorWrapper>
                 <ErrorText>{formik.errors.username}</ErrorText>
-              </Box>
+              </ContainerError>
             ) : null}
 
             <TextField
@@ -186,32 +186,17 @@ const SignupFormFormik: NextPage = () => {
               onChange={formik.handleChange}
             />
             {formik.touched.email && formik.errors.email ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  mt: '10px',
-                  alignItems: 'start',
-                }}
-              >
-                <Box
-                  sx={{
-                    width: '16px',
-                    height: '16px',
-                    [theme.breakpoints.down('sm')]: {
-                      width: '13px',
-                      height: '13px',
-                    },
-                  }}
-                >
+              <ContainerError>
+                <ImageErrorWrapper>
                   <Image
                     src={ErrorIcon}
                     alt="Error Icon"
                     objectFit="fill"
                     quality={100}
                   />
-                </Box>
+                </ImageErrorWrapper>
                 <ErrorText>{formik.errors.email}</ErrorText>
-              </Box>
+              </ContainerError>
             ) : null}
 
             <TextField
@@ -241,32 +226,17 @@ const SignupFormFormik: NextPage = () => {
               }}
             />
             {formik.touched.password && formik.errors.password ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  mt: '10px',
-                  alignItems: 'start',
-                }}
-              >
-                <Box
-                  sx={{
-                    width: '16px',
-                    height: '16px',
-                    [theme.breakpoints.down('sm')]: {
-                      width: '13px',
-                      height: '13px',
-                    },
-                  }}
-                >
+              <ContainerError>
+                <ImageErrorWrapper>
                   <Image
                     src={ErrorIcon}
                     alt="Error Icon"
                     objectFit="fill"
                     quality={100}
                   />
-                </Box>
+                </ImageErrorWrapper>
                 <ErrorText>{formik.errors.password}</ErrorText>
-              </Box>
+              </ContainerError>
             ) : null}
 
             <TextField
@@ -280,32 +250,17 @@ const SignupFormFormik: NextPage = () => {
             />
 
             {formik.touched.phone && formik.errors.phone ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  mt: '10px',
-                  alignItems: 'start',
-                }}
-              >
-                <Box
-                  sx={{
-                    width: '16px',
-                    height: '16px',
-                    [theme.breakpoints.down('sm')]: {
-                      width: '13px',
-                      height: '13px',
-                    },
-                  }}
-                >
+              <ContainerError>
+                <ImageErrorWrapper>
                   <Image
                     src={ErrorIcon}
                     alt="Error Icon"
                     objectFit="fill"
                     quality={100}
                   />
-                </Box>
+                </ImageErrorWrapper>
                 <ErrorText>{formik.errors.phone}</ErrorText>
-              </Box>
+              </ContainerError>
             ) : null}
 
             <TextField
@@ -319,32 +274,17 @@ const SignupFormFormik: NextPage = () => {
             />
 
             {formik.touched.shippingAddress && formik.errors.shippingAddress ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  mt: '10px',
-                  alignItems: 'start',
-                }}
-              >
-                <Box
-                  sx={{
-                    width: '16px',
-                    height: '16px',
-                    [theme.breakpoints.down('sm')]: {
-                      width: '13px',
-                      height: '13px',
-                    },
-                  }}
-                >
+              <ContainerError>
+                <ImageErrorWrapper>
                   <Image
                     src={ErrorIcon}
                     alt="Error Icon"
                     objectFit="fill"
                     quality={100}
                   />
-                </Box>
+                </ImageErrorWrapper>
                 <ErrorText>{formik.errors.shippingAddress}</ErrorText>
-              </Box>
+              </ContainerError>
             ) : null}
 
             <FormControlLabel
@@ -367,7 +307,7 @@ const SignupFormFormik: NextPage = () => {
               </Grid>
             </Grid>
           </Box>
-        </Box>
+        </ContainerForm>
       </ContainerSignup>
       {loading ? <ContentLoading /> : <BOX />}
       <Footer3 />
