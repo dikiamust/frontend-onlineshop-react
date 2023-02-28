@@ -27,7 +27,7 @@ import { validationSchema } from './ validationSchema';
 import Footer3 from 'components/Footer3';
 import Header3 from 'components/Header3';
 
-const BOX = styled(Box)(({ theme }) => ({
+const DummyBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: '100%',
   height: '20vh',
@@ -309,7 +309,7 @@ const SignupFormFormik: NextPage = () => {
           </Box>
         </ContainerForm>
       </ContainerSignup>
-      {loading ? <ContentLoading /> : <BOX />}
+      {loading ? <ContentLoading /> : <DummyBox />}
       <Footer3 />
     </>
   );
