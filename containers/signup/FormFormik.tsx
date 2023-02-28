@@ -87,12 +87,16 @@ const SignupFormFormik: NextPage = () => {
 
       const validate = await response.json();
       console.log('check', validate);
+      console.log('check', response);
 
-      const signUpSucces = response.status === 200;
+      const signUpSucces = validate.success;
 
       if (signUpSucces) {
         setLoading(false);
         await router.push('/signin');
+      } else if (validate.message === 'Email already exist!.') {
+        setLoading(false);
+        formik.setFieldError('email', validate.message);
       } else {
         setLoading(false);
         formik.setFieldError('email', 'Invalid credentials');
@@ -141,7 +145,37 @@ const SignupFormFormik: NextPage = () => {
               name="username"
               label="Username"
               value={formik.values.username}
+              onChange={formik.handleChange}
             />
+            {formik.touched.username && formik.errors.username ? (
+              <Box
+                sx={{
+                  display: 'flex',
+                  mt: '10px',
+                  alignItems: 'start',
+                }}
+              >
+                <Box
+                  sx={{
+                    width: '16px',
+                    height: '16px',
+                    [theme.breakpoints.down('sm')]: {
+                      width: '13px',
+                      height: '13px',
+                    },
+                  }}
+                >
+                  <Image
+                    src={ErrorIcon}
+                    alt="Error Icon"
+                    objectFit="fill"
+                    quality={100}
+                  />
+                </Box>
+                <ErrorText>{formik.errors.username}</ErrorText>
+              </Box>
+            ) : null}
+
             <TextField
               margin="normal"
               required
@@ -242,7 +276,37 @@ const SignupFormFormik: NextPage = () => {
               name="phone"
               label="Phone"
               value={formik.values.phone}
+              onChange={formik.handleChange}
             />
+
+            {formik.touched.phone && formik.errors.phone ? (
+              <Box
+                sx={{
+                  display: 'flex',
+                  mt: '10px',
+                  alignItems: 'start',
+                }}
+              >
+                <Box
+                  sx={{
+                    width: '16px',
+                    height: '16px',
+                    [theme.breakpoints.down('sm')]: {
+                      width: '13px',
+                      height: '13px',
+                    },
+                  }}
+                >
+                  <Image
+                    src={ErrorIcon}
+                    alt="Error Icon"
+                    objectFit="fill"
+                    quality={100}
+                  />
+                </Box>
+                <ErrorText>{formik.errors.phone}</ErrorText>
+              </Box>
+            ) : null}
 
             <TextField
               margin="normal"
@@ -251,7 +315,37 @@ const SignupFormFormik: NextPage = () => {
               name="shippingAddress"
               label="Shipping Address"
               value={formik.values.shippingAddress}
+              onChange={formik.handleChange}
             />
+
+            {formik.touched.shippingAddress && formik.errors.shippingAddress ? (
+              <Box
+                sx={{
+                  display: 'flex',
+                  mt: '10px',
+                  alignItems: 'start',
+                }}
+              >
+                <Box
+                  sx={{
+                    width: '16px',
+                    height: '16px',
+                    [theme.breakpoints.down('sm')]: {
+                      width: '13px',
+                      height: '13px',
+                    },
+                  }}
+                >
+                  <Image
+                    src={ErrorIcon}
+                    alt="Error Icon"
+                    objectFit="fill"
+                    quality={100}
+                  />
+                </Box>
+                <ErrorText>{formik.errors.shippingAddress}</ErrorText>
+              </Box>
+            ) : null}
 
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
