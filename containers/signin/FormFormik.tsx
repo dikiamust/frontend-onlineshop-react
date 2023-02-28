@@ -28,7 +28,7 @@ import Footer3 from 'components/Footer3';
 import Header3 from 'components/Header3';
 import ContentLoading from 'components/ContentLoading';
 
-const BOX = styled(Box)(({ theme }) => ({
+const DummyBox = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: '100%',
   height: '20vh',
@@ -118,7 +118,7 @@ const SigninFormFormik: NextPage = () => {
           <Typography
             component="h1"
             variant="h5"
-            sx={{ mt: 7, color: 'white', marginTop: '130px' }}
+            sx={{ mt: 13, color: 'white' }}
           >
             Sign in
           </Typography>
@@ -128,6 +128,7 @@ const SigninFormFormik: NextPage = () => {
             noValidate
             sx={{
               mt: 3,
+              zIndex: 2,
               maxWidth: '350px',
               backgroundColor: 'white',
               padding: '35px',
@@ -250,7 +251,7 @@ const SigninFormFormik: NextPage = () => {
           </Box>
         </Box>
       </ContainerSignin>
-      {loading ? <ContentLoading /> : <BOX />}
+      {loading ? <ContentLoading /> : <DummyBox />}
       <Footer3 />
     </>
   );
