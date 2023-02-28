@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 
 // components
 import Meta from 'components/Meta';
-import SignupFormFormik from 'containers/signup/FormFormik';
+import SignupFormFormik from 'containers/Signup';
 
 const Signin: NextPage = () => {
   return (
