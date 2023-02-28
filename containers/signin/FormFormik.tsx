@@ -23,10 +23,10 @@ import ErrorIcon from '@/svg/error-icon.svg';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useTheme } from '@mui/material/styles';
-import ContentLoading from './ContentLoading';
 import { validationSchema } from './ validationSchema';
 import Footer3 from 'components/Footer3';
 import Header3 from 'components/Header3';
+import ContentLoading from 'components/ContentLoading';
 
 const BOX = styled(Box)(({ theme }) => ({
   position: 'relative',

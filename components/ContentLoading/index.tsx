@@ -29,7 +29,7 @@ const Spinner = styled('div')(({ theme }) => ({
   },
 }));
 
-export const TitleLoader = styled(Typography)(({ theme }) => ({
+const TitleLoader = styled(Typography)(({ theme }) => ({
   fontFamily: 'Bahnschrift',
   fontStyle: 'normal',
   fontWeight: 400,
