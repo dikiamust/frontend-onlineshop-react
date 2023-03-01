@@ -2,8 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 
 // material
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { styled } from '@mui/system';
+
+// axios
+import axios from 'axios';
+
+// base URL
+import BASE_URL from 'utils/baseUrl';
 
 const Section = styled(Box)(({ theme }) => ({
   padding: '0 80px',
@@ -27,6 +33,18 @@ const CardContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
     alignItems: 'center',
+  },
+}));
+
+const Title = styled(Typography)(({ theme }) => ({
+  fontSize: '29px',
+  lineHeight: '33px',
+  color: '#01110C',
+  textAlign: 'center',
+  margin: '20px 0',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '20px',
+    lineHeight: '24px',
   },
 }));
 
@@ -136,52 +154,50 @@ const Card = ({
   </CardBox>
 );
 
+interface IProduct {
+  _id: string;
+  name: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  description: string;
+}
+
 const OurProduct = () => {
   const theme = useTheme();
-  const isSMDown = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const [dataProduct, setDataProduct] = React.useState([]);
+
+  React.useEffect(() => {
+    const getDataProduct = async () => {
+      const response = await axios.get(`${BASE_URL}/products`);
+      setDataProduct(response.data.data);
+    };
+
+    getDataProduct();
+  }, []);
 
   return (
     <>
       <Section>
-        <Typography
-          variant="h3"
-          sx={{
-            color: '#01110C',
-            margin: {
-              lg: '130px 0 67px 0',
-              sm: '193px 0 34px 0',
-              xs: '193px 0 34px 0',
-            },
-            textAlign: 'center',
-          }}
-        >
-          Our Products
-        </Typography>
+        <Title>Our Products</Title>
         <CardContainer>
-          <Card
-            cardColor="#48773E"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ex?"
-            productName="iPhone"
-            backgroundImage="https://images.tokopedia.net/img/cache/500-square/product-1/2020/2/19/47871595/47871595_b6aa9df0-846b-4846-95d1-940248340634_1000_1000"
-            typeOrder="pre-order"
-            stock={0}
-          />
-          <Card
-            cardColor="#48773E"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ex?"
-            productName="Samsung"
-            backgroundImage="/svg/OurMission2.svg"
-            typeOrder="order"
-            stock={10}
-          />
-          <Card
-            cardColor="#48773E"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ex?"
-            productName="Motorola"
-            backgroundImage="/svg/OurMission2.svg"
-            typeOrder="order"
-            stock={10}
-          />
+          {dataProduct.length > 0 ? (
+            dataProduct.map((dataProduct: IProduct) => (
+              <Box key={dataProduct._id}>
+                <Card
+                  cardColor="#48773E"
+                  description={dataProduct.description}
+                  productName={dataProduct.name}
+                  backgroundImage={dataProduct.imageUrl}
+                  typeOrder={dataProduct.stock <= 0 ? 'pre-order' : 'order'}
+                  stock={dataProduct.stock}
+                />
+              </Box>
+            ))
+          ) : (
+            <p>Not found</p>
+          )}
         </CardContainer>
       </Section>
     </>
